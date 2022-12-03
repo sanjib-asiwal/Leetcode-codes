@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        vector<pair<int,char>> vec(128,{0,0});
+        for(int i=0;i<s.length();i++){
+            vec[s[i]]={vec[s[i]].first+1,s[i]};
+        }
+        //subscribe my channel @codeved-Sanjib Asiwalfor hindi sollution in best approach
+        sort(vec.begin(),vec.end());
+        string ans="";
+        for(int i=0;i<vec.size();i++){
+            string str(vec[i].first,vec[i].second);
+            ans=str+ans;
+        }
+        return ans;
+    }
+};
