@@ -1,0 +1,20 @@
+class Solution {
+public:
+    void helper(TreeNode* root,vector<int> &arr){
+        if(!root) return;
+        if(!root->left&&!root->right){
+          arr.push_back(root->val);
+          return;
+        }
+        helper(root->left,arr);
+        helper(root->right,arr);
+    }
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        vector<int> arr1,arr2;
+        helper(root1,arr1);
+        helper(root2,arr2);
+        if(arr1==arr2)
+         return true;
+        return false;
+    }
+};
