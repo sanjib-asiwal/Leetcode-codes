@@ -1,0 +1,121 @@
+//@codeved
+
+class Solution {
+public:
+int ans=0;
+    int  helper(TreeNode* root,int mini,int maxi){
+        if(!root) return maxi-mini ;
+
+   maxi= max(root->val,maxi);
+
+   mini= min(root->val,mini);
+
+       int left= helper(root->left,mini,maxi);
+       int right= helper(root->right,mini,maxi);
+
+       return max(left,right);
+            
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        if(!root) return 0;
+    int ans= helper(root,root->val,root->val);
+    return ans;
+    
+    }
+};
+
+//next approach by @codeved
+
+class Solution {
+public:
+int ans=0;
+    void helper(TreeNode* root,int mini,int maxi){
+        if(!root) return ;
+        if(root->val>maxi){
+            if(abs(root->val-maxi)>ans)
+               ans=abs(root->val-maxi);
+        maxi=root->val;
+        }
+
+       if(root->val<mini){
+            if(abs(root->val-mini)>ans)
+               ans=abs(root->val-mini);
+        mini=root->val;
+        }
+        if(abs(root->val-mini)>ans)
+               ans=abs(root->val-mini);
+        if(abs(root->val-maxi)>ans)
+               ans=abs(root->val-maxi);
+        
+        helper(root->left,mini,maxi);
+        helper(root->right,mini,maxi);
+            
+
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        if(!root) return 0;
+        helper(root,root->val,root->val);
+        return ans;
+    }
+};
+
+//next by @codeved
+
+class Solution {
+public:
+int ans=0;
+    int  helper(TreeNode* root,int mini,int maxi){
+        if(!root) return maxi-mini ;
+        if(root->val>maxi){
+            // if(abs(root->val-maxi)>ans)
+            //    ans=abs(root->val-maxi);
+        maxi=root->val;
+        }
+
+       if(root->val<mini){
+            // if(abs(root->val-mini)>ans)
+            //    ans=abs(root->val-mini);
+        mini=root->val;
+        }
+        // if(abs(root->val-mini)>ans)
+        //        ans=abs(root->val-mini);
+        // if(abs(root->val-maxi)>ans)
+        //        ans=abs(root->val-maxi);
+        
+       return max( helper(root->left,mini,maxi),
+        helper(root->right,mini,maxi));
+            
+
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        if(!root) return 0;
+    return  helper(root,root->val,root->val);
+    
+    }
+};
+
+//next by@codeVed
+
+class Solution {
+public:
+int ans=0;
+    int  helper(TreeNode* root,int mini,int maxi){
+        if(!root) return maxi-mini ;
+
+   maxi= max(root->val,maxi);
+
+   mini= min(root->val,mini);
+
+       int left= helper(root->left,mini,maxi);
+       int right= helper(root->right,mini,maxi);
+
+       return max(left,right);
+            
+
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        if(!root) return 0;
+    return  helper(root,root->val,root->val);
+    
+    }
+};
