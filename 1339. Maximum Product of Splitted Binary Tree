@@ -1,0 +1,53 @@
+//approach 2nd
+
+class Solution {
+public:
+    long long total_sum=0,ans=0;
+    // void totalsum(TreeNode* root){
+    //     if(!root) return ;
+    //     total_sum+=root->val;
+    //     totalsum(root->left);
+    //     totalsum(root->right);
+    // }
+
+    int subtreesum(TreeNode *root){
+        if(!root) return 0;
+        long long sum=root->val+ subtreesum(root->left)+ subtreesum(root->right);
+        ans=max(ans,(total_sum-sum)*sum);
+        return sum;
+
+    }
+   
+    int maxProduct(TreeNode* root) {
+        total_sum=subtreesum(root);
+        subtreesum(root);
+        return ans%int(1e9+7);
+    }
+};
+
+//approach 1st
+
+class Solution {
+public:
+    long long total_sum=0,ans=0;
+    void totalsum(TreeNode* root){
+        if(!root) return ;
+        total_sum+=root->val;
+        totalsum(root->left);
+        totalsum(root->right);
+    }
+
+    int subtreesum(TreeNode *root){
+        if(!root) return 0;
+        long long sum=root->val+ subtreesum(root->left)+ subtreesum(root->right);
+        ans=max(ans,(total_sum-sum)*sum);
+        return sum;
+
+    }
+   
+    int maxProduct(TreeNode* root) {
+        totalsum(root);
+        subtreesum(root);
+        return ans%int(1e9+7);
+    }
+};
