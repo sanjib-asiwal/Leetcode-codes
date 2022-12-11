@@ -1,0 +1,14 @@
+class Solution {
+public:
+    pair<int,int> maxPath(TreeNode* root){
+         if(!root) return {INT_MIN,0};
+        pair<int,int> lst=maxPath(root->left);
+        pair<int,int> rst=maxPath(root->right);
+        int maxpath=max({root->val+max(0,lst.second)+max(0,rst.second),lst.first,rst.first});
+        int unipath=root->val+max({0,lst.second,rst.second});
+        return {maxpath,unipath};
+    }
+    int maxPathSum(TreeNode* root) {
+       return maxPath(root).first;
+    }
+};
