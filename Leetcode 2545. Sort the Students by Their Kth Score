@@ -1,0 +1,31 @@
+//First type by Codeved
+//@codeved
+class Solution {
+public://@codeved
+    vector<vector<int>> sortTheStudents(vector<vector<int>>& score, int k) {
+        
+        sort(score.begin(), score.end(),[k](vector<int>& a, vector<int>& b) {
+        return a[k] > b[k];
+    });
+        return score;
+    }
+};//@codeved
+
+//second type by Codeved
+
+class Solution {
+public:
+    struct Compare {
+    int k;
+    bool operator() (vector<int>& a, vector<int>& b) {
+        return a[k] > b[k];
+    }
+};//@codeved
+
+    vector<vector<int>> sortTheStudents(vector<vector<int>>& score, int k) {
+    Compare cmp;
+    cmp.k = k;
+    sort(score.begin(), score.end(), cmp);
+    return score;
+    }//@codeved
+};
