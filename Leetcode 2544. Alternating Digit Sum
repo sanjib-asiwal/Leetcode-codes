@@ -1,0 +1,23 @@
+class Solution {
+public://@codeved
+    
+    void reverse(string & str){
+        int n=str.length();
+        for(int i=0;i<n/2;i++){
+            swap(str[i],str[n-i-1]);
+        }
+    }//@codeved
+    int alternateDigitSum(int n) {
+        string str=to_string(n);
+        reverse(str);
+        int x=stoi(str);
+        int sum=0;
+        int sign=1;
+        while(x>0){
+            sum+=sign*(x%10);
+            x/=10;
+            sign=-sign;
+        }//@codeved
+        return sum;
+    }//@codeved
+};//@codeved
