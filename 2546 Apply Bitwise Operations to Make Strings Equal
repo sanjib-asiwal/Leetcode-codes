@@ -1,0 +1,33 @@
+class Solution {
+public://@codeved
+    bool makeStringsEqual(string s, string target) {
+        //find number of one's
+        int one=0;
+        int n=s.size();
+        for(int i=0;i<n;i++){
+            one+=s[i]=='1';
+        }
+        //@codeved
+      for(int i=0;i<n;i++){
+          if(s[i]=='0'&&target[i]!='0'){
+              if(one){
+                  s[i]='1';
+                  one++;
+              }
+          }
+      }
+        //@codeved
+        for(int i=0;i<n;i++){
+
+            if(s[i]=='1'&&target[i]!='1'){
+            
+                if(one>1){
+                    s[i]='0';
+                    one--;
+                }
+            }
+        }//@codeved
+        
+        return s==target;
+    }
+};
