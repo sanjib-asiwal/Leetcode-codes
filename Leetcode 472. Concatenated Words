@@ -1,0 +1,29 @@
+class Solution {
+public:
+    unordered_set<string> set;
+    vector<string> res;
+//@CodeVed
+    vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {
+        if (words.size() == 0) return res;
+        set = unordered_set<string>(words.begin(), words.end());
+
+        for (auto word : words) {
+            if (isconcat(word)) res.push_back(word);
+        }//@CodeVed
+
+
+        return res;
+    }//@CodeVed
+
+    bool isconcat(string word) {
+        int len = word.length();
+        for (int i = 1; i < len; i++) {
+            string suffix = word.substr(i);
+            if (set.count(word.substr(0, i)) && (set.count(suffix) || isconcat(suffix))) {
+                return true;
+            }
+        }//@CodeVed
+
+        return false;
+    }
+};//@CodeVed
