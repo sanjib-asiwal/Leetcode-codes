@@ -1,0 +1,39 @@
+class SummaryRanges {
+public:
+    set<int> s;
+    SummaryRanges() {
+        
+    }//@CodeVed
+
+    
+    void addNum(int val) {
+        s.insert(val);
+    }//@CodeVed
+
+    
+    vector<vector<int>> getIntervals() {
+        vector<vector<int>> v;
+        int right=-1;
+        int left=-1;
+        for(auto x:s)
+        {
+            if(right==-1)
+            {
+                left=x;
+                right=x;
+            }//@CodeVed
+
+            else if(right+1==x)
+                right++;
+            else
+            {
+                v.push_back({left,right});
+                left=x;
+                right=x;
+            }
+        }
+        v.push_back({left,right});
+        return v;
+    }//@CodeVed
+
+};//@CodeVed
