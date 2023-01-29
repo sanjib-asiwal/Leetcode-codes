@@ -1,0 +1,20 @@
+class Solution {
+public:
+    long m = (long)1e9 + 7;
+    int monkeyMove(int n) {
+        long p = (long) (MyPow(2, n));
+
+        return (int)p;
+    }
+    long MyPow(long x, int n){
+        long res = 1;
+        while (n > 0)
+        {
+            if (n % 2 == 1)
+                res = (res * x) % m;
+            x = x * x % m;
+            n >>= 1;
+        }
+        return (res - 2 + m) % m;
+    }
+};
