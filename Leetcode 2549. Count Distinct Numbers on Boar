@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> v;
+    int distinctIntegers(int n) {
+        v.push_back(n);
+        int i=0;
+        while(i!=v.size()){
+            for(int j=1;j<v[i];j++){
+                if(v[i]%j==1)
+                    v.push_back(j);
+            }
+            i++;
+        }
+        set<int> s;
+        for(int i=0;i<v.size();i++){
+            s.insert(v[i]);
+        }
+        return s.size();
+    }
+};
+
+
+
+class Solution {
+public:
+    int distinctIntegers(int n) {
+        if(n==1) return 1;
+        return n-1;
+    }
+};
