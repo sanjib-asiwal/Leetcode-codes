@@ -1,0 +1,25 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    bool isAlienSorted(vector<string>& words, string order) {
+        int orderMap[26];
+        for (int i = 0; i < order.length(); i++){
+            orderMap[order[i] - 'a'] = i;
+        }//@CodeVed
+
+        for (int i = 0; i < words.size() - 1; i++) {
+
+            for (int j = 0; j < words[i].length(); j++) {
+                if (j >= words[i + 1].length())
+                 return false;
+
+                if (words[i][j] != words[i + 1][j]) {
+                    if (orderMap[ words[i][j] - 'a'] > orderMap[words[i + 1][j] - 'a'])
+                     return false;
+                   else break;
+                }//@CodeVed
+            }//@CodeVed
+        }//@CodeVed
+
+        return true;
+    }//@CodeVed
+};//@CodeVed
