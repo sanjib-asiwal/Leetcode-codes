@@ -1,0 +1,14 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    int maxCount(vector<int>& banned, int n, int maxSum) {
+    unordered_set<int> s(banned.begin(), banned.end());
+    int cnt = 0, sum = 0;
+    for (int i = 1; i <= n; i++) {
+        if (s.count(i)) continue;
+        if (sum + i > maxSum) break;
+        sum += i;
+        cnt++;
+    }//@CodeVed
+    return cnt;
+    }//@CodeVed
+};//@CodeVed
