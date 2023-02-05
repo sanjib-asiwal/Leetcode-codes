@@ -1,0 +1,21 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    long long pickGifts(vector<int>& gifts, int k) {
+        long long n=gifts.size();
+        priority_queue<long long> list;
+        for(int i=0;i<gifts.size();i++){
+            list.push(gifts[i]);
+        }//@CodeVed
+        long long ans=0;
+        while(k){
+            list.push(sqrt(list.top()));
+            list.pop();
+            k--;
+        }//@CodeVed
+        while(!list.empty()){
+            ans+=list.top();
+            list.pop();
+        }//@CodeVed
+        return ans;
+    }//@CodeVed
+};//@CodeVed
