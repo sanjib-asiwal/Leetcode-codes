@@ -1,0 +1,91 @@
+//1st approach time o(n^3) space  O(n)
+
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+
+        int maxPicked = 0;
+
+        for (int left = 0; left < fruits.size(); ++left) {
+            for (int right = left; right < fruits.size(); ++right) {
+
+                set<int> basket;
+                
+
+                for (int currentIndex = left; currentIndex <= right; ++currentIndex) {
+                    basket.insert(fruits[currentIndex]);
+                }
+                
+               if (basket.size() <= 2) {
+                    maxPicked = max(maxPicked, right - left + 1);
+                }
+            }
+        }
+        
+
+        return maxPicked;
+    }
+};
+
+//2nd approach time o(n^2) space  O(1)
+
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        int maxPicked = 0;
+        for (int left = 0; left < fruits.size(); ++left) {
+            set<int> basket;
+            int right = left;
+            while (right < fruits.size()) {
+                if (basket.find(fruits[right]) == basket.end() && basket.size() == 2)
+                    break;
+                basket.insert(fruits[right]);
+                right++;
+            }
+            maxPicked = max(maxPicked, right - left);
+        }
+        return maxPicked;
+    }
+};
+
+// 3rd approach time o(n) space  O(n)
+
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        unordered_map<int, int> basket;
+        int left, right;
+        for (left = 0, right = 0; right < fruits.size(); ++right) {
+            basket[fruits[right]]++;
+            if (basket.size() > 2) {
+                basket[fruits[left]]--;
+                if (basket[fruits[left]] == 0)
+                    basket.erase(fruits[left]);
+                left++;
+            }
+        }
+        return right - left;
+    }
+};
+
+// 4th approach time o(n) space  O(1)
+
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        unordered_map<int, int> basket;
+        int maxPicked=0;
+        int left, right;
+        for (left = 0, right = 0; right < fruits.size(); ++right) {
+            basket[fruits[right]]++;
+            if (basket.size() > 2) {
+                basket[fruits[left]]--;
+                if (basket[fruits[left]] == 0)
+                    basket.erase(fruits[left]);
+                left++;
+            }
+              maxPicked = max(maxPicked, right - left + 1);
+        }
+        return maxPicked;
+    }
+};
