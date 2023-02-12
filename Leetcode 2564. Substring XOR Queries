@@ -1,0 +1,25 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    vector<vector<int>> substringXorQueries(string s, vector<vector<int>>& queries) {
+        map<int,vector<int>> mp;
+        for(int i=0;i<s.size();i++){
+            long long num=0;
+            for(int j=i,k=0;j>=0&&k<=31;j--,k++){
+                int bit=s[j]-'0';
+                num+=(bit<<k);
+                vector<int> vec={j,i};
+                if(num<INT_MAX && mp.find(num)==mp.end())
+                mp[num]=vec;
+            }//@CodeVed
+        }//@CodeVed
+        vector<vector<int>> ans;
+        for(auto & i:queries){
+            int target =(i[0]^i[1]);
+            if(mp.find(target)!=mp.end())
+                ans.push_back(mp[target]);
+            else
+                ans.push_back({-1,-1});
+        }//@CodeVed
+        return ans;
+    }//@CodeVed
+};//@CodeVed
