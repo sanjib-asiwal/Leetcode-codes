@@ -1,0 +1,43 @@
+class Solution {//@CodeVed
+public:
+    int countOdds(int low, int high) {
+        if (!(low & 1)) {
+            low++;
+        }//@CodeVed
+        return low > high ? 0 : (high - low) / 2 + 1;
+    }//@CodeVed
+};//@CodeVed
+
+//@CodeVed//@CodeVed
+//@CodeVed//@CodeVed
+//@CodeVed//@CodeVed
+//@CodeVed//@CodeVed
+//@CodeVed//@CodeVed
+
+//@CodeVed
+class Solution {//@CodeVed
+public://@CodeVed
+    int countOdds(int low, int high) {
+        //@CodeVed
+        if(low%2 || high%2)
+            return ((high-low)/2) + 1; 
+        return ((high-low)/2);
+        //@CodeVed
+    //@CodeVed
+    //@CodeVed
+    }//@CodeVed
+};//@CodeVed
+//@CodeVed
+//@CodeVed
+
+
+class Solution {//@CodeVed
+public://@CodeVed
+    int countOdds(int low, int high) {
+        int cnt=0;
+        for(int i=low;i<=high;i++){
+            if(i%2!=0) cnt++;
+        }//@CodeVed
+        return cnt;
+    }//@CodeVed
+};//@CodeVed
