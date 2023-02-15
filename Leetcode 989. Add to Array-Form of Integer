@@ -1,0 +1,19 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    vector<int> addToArrayForm(vector<int>& num, int K) {
+        int N = num.size();
+        int cur = K;
+        vector<int> ans;
+//@CodeVed
+        int i = N;
+        while (--i >= 0 || cur > 0) {
+            if (i >= 0)
+                cur += num[i];
+            ans.push_back(cur % 10);
+            cur /= 10;
+        }//@CodeVed
+
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }//@CodeVed
+};//@CodeVed
