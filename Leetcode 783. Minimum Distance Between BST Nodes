@@ -1,0 +1,20 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    int minDistance = INT_MAX;
+    TreeNode* prevValue;        
+    void inorderTraversal(TreeNode* root) {
+        if (root == NULL) {
+            return;
+        }       //@CodeVed
+        inorderTraversal(root->left);
+        if (prevValue != NULL) {
+            minDistance = min(minDistance, root->val - prevValue->val);
+        }//@CodeVed
+        prevValue = root;
+        inorderTraversal(root->right);
+    }  //@CodeVed
+    int minDiffInBST(TreeNode* root) {
+        inorderTraversal(root);        
+        return minDistance;
+    }//@CodeVed
+};//@CodeVed
