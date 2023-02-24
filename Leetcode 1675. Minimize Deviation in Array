@@ -1,0 +1,24 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    int minimumDeviation(vector<int>& nums) {
+        set<int> s;
+        for (int n : nums) {
+            if (n % 2 == 1)
+                s.insert(2 * n);
+            else
+                s.insert(n);
+        }//@CodeVed
+        int deviation = INT_MAX;
+        while (true) {
+            int max_val = *s.rbegin();
+            deviation = min(deviation, max_val - *s.begin());
+            if (max_val % 2 == 1)
+                break;
+            else {
+                s.erase(max_val);
+                s.insert(max_val / 2);
+            }//@CodeVed
+        }//@CodeVed
+        return deviation;
+    }//@CodeVed
+};//@CodeVed
