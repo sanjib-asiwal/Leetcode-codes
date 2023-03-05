@@ -1,0 +1,33 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    long long kthLargestLevelSum(TreeNode* root, int k) {
+        queue<TreeNode*>q;
+        priority_queue<long long>pq;
+        q.push(root);
+      
+        while(!q.empty()){
+            long long sum=0;
+            int s=q.size();
+            while(s--){
+                TreeNode*toot=q.front();
+                q.pop();
+                 sum+=(toot->val);
+                 if(toot->left){
+                     q.push(toot->left);
+                 }//@CodeVed
+                 if(toot->right){
+                     q.push(toot->right);
+                 }//@CodeVed
+            }//@CodeVed
+            pq.push(sum);
+        }//@CodeVed
+         if(k > pq.size()){
+            return -1;
+        }//@CodeVed
+        
+        while(--k){
+            pq.pop();
+        }//@CodeVed
+      return pq.top();  
+        }//@CodeVed
+};//@CodeVed
