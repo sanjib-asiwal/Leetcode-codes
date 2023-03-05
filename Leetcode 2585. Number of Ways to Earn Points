@@ -1,0 +1,20 @@
+class Solution {//@CodeVed
+    int mod = 1e9 + 7;
+    int dfs(int i, int t, int n, vector<vector<int>> &types, vector<vector<int>> &dp) {
+        if(!t) return 1;
+        if(i == n) return 0;
+        if(dp[i][t] != -1) return dp[i][t];
+        
+        long long ans = 0;
+        for(int j=0; j<=types[i][0] * types[i][1]; j += types[i][1]) {
+            if(t - j >= 0) ans = (ans + dfs(i + 1, t - j, n, types, dp)) % mod;
+        }//@CodeVed
+        return dp[i][t] = ans;
+    }//@CodeVed
+public:
+    int waysToReachTarget(int target, vector<vector<int>>& types) {
+        int n = types.size();
+        vector<vector<int>> dp(n, vector<int>(target + 1, -1));
+        return dfs(0, target, n, types, dp);
+    }//@CodeVed
+};//@CodeVed
