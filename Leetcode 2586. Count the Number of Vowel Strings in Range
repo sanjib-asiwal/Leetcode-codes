@@ -1,0 +1,13 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    int help(char w){
+        return (w == 'a' || w == 'e' || w == 'i' || w == 'o' || w == 'u');
+    }//@CodeVed
+    int vowelStrings(vector<string>& words, int left, int right) {
+        int count = 0;
+        for(int i = left; i <= right; ++i) {
+            if(help(words[i][0]) && help(words[i].back()) ) count++;
+        }//@CodeVed
+        return count;
+    }//@CodeVed
+};//@CodeVed
