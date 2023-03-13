@@ -1,0 +1,13 @@
+class Solution {//@CodeVed
+public://@CodeVed
+    bool areMirrorImg(TreeNode* r1,TreeNode* r2){
+        if(!r1&&!r2) return true;
+        if(!r1||!r2) return false;
+        return (r1->val==r2->val)&&(areMirrorImg(r1->left,r2->right))
+            &&(areMirrorImg(r1->right,r2->left));
+    }//@CodeVed
+    bool isSymmetric(TreeNode* root) {
+        if(!root) return true;
+        return areMirrorImg(root->left,root->right);
+    }//@CodeVed
+};//@CodeVed
