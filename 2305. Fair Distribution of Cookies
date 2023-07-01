@@ -1,0 +1,34 @@
+class Solution { //@codeved
+public:
+    int dfs(int i,vector<int>& distribute,vector<int>& cookies,int k,int remperson){
+        
+        if(cookies.size()-i<remperson){
+            return INT_MAX;
+        }//@codeved
+        
+        if(i==cookies.size()){
+            return *max_element(distribute.begin(),distribute.end());
+        }//@codeved
+        int answer=INT_MAX;
+         
+        for(int j=0;j<k;j++){
+           remperson-=distribute[j]==0?1:0; 
+            distribute[j]+=cookies[i];
+             answer=min(answer, dfs(i+1,distribute,cookies,k,remperson));
+            
+             
+            distribute[j]-=cookies[i];
+            remperson+=distribute[j]==0?1:0;
+            
+        }//@codeved
+        return answer;
+    }//@codeved
+    
+    
+    
+    int distributeCookies(vector<int>& cookies, int k) {
+        
+        vector<int> distribute(k,0);
+      return dfs(0,distribute,cookies,k,k);
+    }//@codeved
+};//@codeved
