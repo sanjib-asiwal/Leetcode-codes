@@ -1,0 +1,28 @@
+class Solution {//@codeved
+public:
+    bool buddyStrings(string s, string goal) {
+         if(s.size()!=goal.size()) return false;
+
+         if(s==goal){
+             vector<int> freq(26,0);
+             for(auto& ch:s){
+                 freq[ch-'a']++;
+                 if(freq[ch-'a']==2) return true;
+
+             }//@codeved
+         }//@codeved
+
+         int x=-1;
+         int y=-1;
+         for(int i=0;i<s.size();i++){
+             if(s[i]!=goal[i]){
+                 if(x==-1) x=i;
+                 else if(y==-1) y=i;
+                 else return false;
+             }//@codeved
+         }//@codeved
+         if(y==-1) return false;
+
+         return s[x]==goal[y]&&s[y]==goal[x];
+    }//@codeved
+};//@codeved
