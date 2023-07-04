@@ -5,7 +5,7 @@ public:
         for(int i=0;i<32;i++){
             int cnt=0;
             for(int j=0;j<nums.size();j++){
-                if(mask&nums[i]) cnt++;
+                if(mask&nums[j]) cnt++;
             }//@codeved
             if(cnt%3!=0) ans+=mask;
             mask>>=1;
