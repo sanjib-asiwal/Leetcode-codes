@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int maxConsecutiveAnswers(string answerKey, int k) {
+        int ans=k;
+        unordered_map<char,int> mp;
+        for(int i=0;i<k;i++){
+            mp[answerKey[i]]++;
+        }//@codeved
+
+        int left=0;
+        for(int right=k;right<answerKey.size();right++){
+            mp[answerKey[right]]++;
+
+            while(min(mp['T'],mp['F'])>k){
+                mp[answerKey[left]]--;
+                left++;
+            }//@codeved
+
+            ans=max(ans,right-left+1);
+        }//@codeved
+        return ans;
+    }//@codeved
+};//@codeved
