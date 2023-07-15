@@ -1,0 +1,33 @@
+class Solution {
+public:
+  vector<vector<int>> dp;
+    int maxValue(vector<vector<int>>& events, int k) {
+        sort(events.begin(),events.end(),[](const vector<int> & a,const vector<int> & b){
+            return a[0]<b[0];
+        });//@codeved
+
+        int n=events.size();
+ dp= vector<vector<int>>(k+1,vector<int>(n,-1));
+
+       return dfs(0,k,events);
+    }//@codeved
+
+    int dfs(int currindex,int count,vector<vector<int>>& events){
+        if(count==0|| currindex==events.size()) return 0;
+
+        if(dp[count][currindex]!=-1) return dp[count][currindex] ;
+        int nextindex=binsearch(events,events[currindex][1]);
+        dp[count][currindex]=max(dfs(currindex+1,count,events),events[currindex][2]+dfs(nextindex,count-1,events));
+        return  dp[count][currindex];
+    }//@codeved
+
+    int binsearch(vector<vector<int>>& events,int idx){
+        int left=0,right=events.size();
+        while(left<right){
+            int mid=(left+right)/2;
+            if(events[mid][0]<=idx) left=mid+1;
+            else right=mid;
+        }//@codeved
+        return left;
+    }//@codeved
+};//@codeved
