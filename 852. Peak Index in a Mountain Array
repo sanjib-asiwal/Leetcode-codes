@@ -1,0 +1,14 @@
+class Solution {//@Codeved
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {//@Codeved
+        int l = 0, r = arr.size() - 1, mid;
+        while (l < r) {
+            mid = (l + r) / 2;
+            if (arr[mid] < arr[mid + 1])
+                l = mid + 1;
+            else
+                r = mid;
+        }//@Codeved
+        return l;
+    }//@Codeved
+};//@Codeved
