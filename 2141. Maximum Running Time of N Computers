@@ -1,0 +1,21 @@
+class Solution {
+public:
+    long long maxRunTime(int n, vector<int>& batteries) {
+        sort(batteries.begin(),batteries.end());
+        
+        long extra=0;
+        for(int i=0;i< batteries.size()-n;i++){
+            extra+=batteries[i];
+        }
+        
+        vector<int> computer(batteries.begin()+batteries.size()-n, batteries.end());
+        
+        for(int i=0;i<n-1;i++){
+            if(extra < (long)(i+1)*(computer[i+1]-computer[i])){
+                return computer[i] + extra/ (long)(i+1);
+            }
+            extra-= long(i+1)*(computer[i+1]-computer[i]);
+        }
+        return computer[n-1]+extra/n;
+    }
+};
