@@ -1,0 +1,48 @@
+//c++ code
+class Solution {
+public:
+    string reverseWords(string s) {
+        int last_space_index=-1;
+        int len=s.size();
+        for(int idx=0;idx<=len;idx++){
+            if(s[idx]==' '||idx ==len){
+                int start_index=last_space_index+1;
+                int last_index=idx-1;
+                while(start_index<last_index){
+                    swap(s[start_index],s[last_index]);
+                    start_index++;
+                    last_index--;
+                }
+                last_space_index=idx;
+            }
+        }
+        return s;
+    }
+};
+
+//Java code
+
+class Solution {
+    public String reverseWords(String s) {
+        int lastSpaceIndex = -1;
+        int len = s.length();
+        char[] charArray = s.toCharArray();
+        
+        for (int idx = 0; idx <= len; idx++) {
+            if (idx == len || charArray[idx] == ' ') {
+                int startIndex = lastSpaceIndex + 1;
+                int lastIndex = idx - 1;
+                while (startIndex < lastIndex) {
+                    char temp = charArray[startIndex];
+                    charArray[startIndex] = charArray[lastIndex];
+                    charArray[lastIndex] = temp;
+                    startIndex++;
+                    lastIndex--;
+                }
+                lastSpaceIndex = idx;
+            }
+        }
+        
+        return new String(charArray);
+    }
+}
