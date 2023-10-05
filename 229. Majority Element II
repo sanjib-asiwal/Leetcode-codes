@@ -1,0 +1,118 @@
+//Method 1 loop
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int> &arr){
+
+    vector<int> ans;
+    int cnt=1;
+    for(int i=0;i<arr.size();i++){
+        cnt=1;
+        if(ans.empty() || ((ans[0] || ans[0]==0) && ans[0]!=arr[i] )){
+
+            for(int j=i+1;j<arr.size();j++){
+                if(arr[j]==arr[i])
+                    cnt++;
+            }
+            if(cnt>arr.size()/3)
+                ans.push_back(arr[i]);
+        }
+        if(ans.size()==2)
+            break;
+    }
+    return ans;
+    }
+};
+
+
+
+//Method 2  Array
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+       vector<int> vec(1e5);
+        vector<int>ans;
+        for(auto it : nums){
+            vec[it]++;
+        }
+        for(int i=0;i<vec.size();i++){
+            if(vec[i] > nums.size()/3){
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
+//Method 3 map
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        unordered_map<int, int> map;
+        vector<int>ans;
+        for(auto it : nums){
+            map[it]++;
+        }
+        for(auto it : map){
+            if(it.second > nums.size()/3){
+                ans.push_back(it.first);
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+//Method 4  optimized
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        
+        int siz=nums.size();
+        int num1=1e9+1,num2=1e9+1,count1=0,count2=0,i;
+        for(i=0;i<siz;i++)
+        {
+            if(nums[i]==num1)
+                count1++;
+            else if(nums[i]==num2)
+                count2++;
+            else if (count1== 0)
+            {
+                num1=nums[i];
+                count1=1;
+            }
+            else if(count2== 0) 
+            {
+                num2=nums[i];
+                count2=1;
+            }
+            else
+            {
+                count1--;
+                count2--;
+            }
+         }
+        vector<int> ans;
+        count1=count2=0;
+        for(i=0;i<siz;i++)
+        {
+            if(nums[i]==num1)
+                count1++;
+            else if (nums[i]==num2 )
+                count2++;
+            
+        }
+        if(count1>siz/3)
+            ans.push_back(num1);
+        if(count2>siz/3)
+            ans.push_back(num2);
+        return ans;
+    }
+};
